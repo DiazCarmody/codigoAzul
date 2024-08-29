@@ -1,0 +1,245 @@
+/* HEADER */
+header{
+    position: sticky;
+    top: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    height: 57px;
+    width: 100%;
+
+    background-color: var(--background-color);
+    border-bottom: var(--border-color) 1px solid;
+
+    z-index: 100;
+}
+header a{
+    display: flex;
+    align-items: center;
+
+    user-select: none;
+    color: var(--font-color);
+
+}
+header a img{
+    width: 30px;
+}
+header a span{
+    margin-left: 10px;
+    font-weight: 500;
+}
+header .backbutton{
+    text-decoration: none;
+}
+
+#darkmode {
+    color: var(--fontcolor);
+    padding: 0px 12px;
+    position: relative;
+    border: none;
+    user-select: none;
+}
+#darkmodeicon {
+    display: var(--showmoon);
+    color: white;
+    cursor: pointer;
+}
+#lightmodeicon {
+    display: var(--showsun);
+    color: white;
+    cursor: pointer;
+}
+#toggler {
+    display: none;
+    width: 100%;
+    height: 100%;
+}
+.darkmode:hover{
+    color: white;
+}
+
+/* MAIN */
+
+.formmain{
+    min-height: calc(100% + 200px);
+    width: 100%;
+    background-color: var(--background-color);
+}
+
+.codigoform{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    width: 100dvw;
+    min-height: 80dvh;
+    padding: 10px 0;
+
+    color: var(--font-color);
+    background-color: var(--background-color);
+
+    margin-top: 64px;
+}
+.codigoform h1{
+    text-align: center;
+    padding: 16px;
+    font-size: 20px;
+    font-weight: 600;
+}
+.codigoform label{
+    padding: 10px;
+    width: 92%;
+
+    font-weight: 600;
+
+    text-align: left;
+}
+.codigoform input{
+    padding: 10px 20px;
+    width: 92%;
+
+    border: var(--border-color) 1px solid;
+    border-radius: 6px;
+
+    background-color: var(--background-color);
+    color: var(--font-color);
+
+}
+.input{
+    padding: 10px 20px;
+    width: 92%;
+
+    border: var(--border-color) 1px solid;
+    border-radius: 6px;
+
+    background-color: var(--background-color);
+    color: var(--font-color); 
+    font-weight: 200;
+}
+.inputPacientes{
+    padding: 5px 10px;
+    width: 60%;
+
+    border: var(--border-color) 1px solid;
+    border-radius: 6px;
+
+    background-color: var(--background-color);
+    color: var(--font-color); 
+    font-weight: 200;
+}
+.codigoform input:focus{
+    outline: var(--blue-color) solid 2px;
+}
+
+.codigoform input[type="submit"]{
+    margin-top: 36px;
+    padding: 14px 20px;
+
+    font-weight: 500;
+
+    border: none;
+    background-color: var(--green-color);
+    border-radius: 50px;
+    color: white;
+    text-align: center;
+}
+
+textarea{
+    resize: none;
+    height: 100px;
+    width: 80%;
+    border: none;
+    border-radius: 6px;
+}
+select{
+    color: var(--font-color);
+}
+option{
+    color: var(--font-color);
+}
+datalist{
+    color: var(--font-color);
+}
+
+.pacientesform{
+    margin-top: 170px;
+}
+
+
+@media screen and (min-width: 1090px){
+    .formmain{
+        display: flex;
+        align-items: center;
+        
+        min-height: 124dvh;
+        width: 100%;
+        background-color: var(--background-bg);
+        min-height: calc(100dvh + 50px);
+    }
+    .codigoform{
+        width: 600px;
+        border-radius: 10px;
+        min-height: 500px;   
+    }
+    .codigoform label{
+        width: 80%;
+    }
+    .codigoform input{
+        width: 80%;  
+    }
+    .input{
+        width: 80%; 
+    }
+
+    select{
+        color: var(--font-color);
+    }
+    option{
+        color: var(--font-color);
+    }
+
+}
+@media screen and (min-width: 1090px){
+    .pacientesform{
+        min-height: max-content;
+        padding: 20px;
+        padding-bottom: 40px;
+        margin-top: 0px;
+    }
+    .pacientesform input[type="submit"]{
+        margin-top: 10px;
+    }
+    select{
+        color: var(--font-color);
+    }
+    option{
+        color: var(--font-color);
+    }
+
+}
+.estiloError {
+      color: var(--red-color);
+      animation: estiloError 5s linear forwards;
+        -webkit-animation: estiloError 5s linear forwards;      
+}
+
+
+
+@keyframes estiloError {
+      0% { opacity: 0; }
+      2% { opacity: 1; }
+      98% { opacity: 1; }
+      100% { opacity: 0; }
+}
+
+@-webkit-keyframes estiloError {
+
+      0% { opacity: 0; }
+      2% { opacity: 1; }
+      98% { opacity: 1; }
+      100% { opacity: 0; }
+}
