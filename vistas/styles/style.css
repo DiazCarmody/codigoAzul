@@ -1125,3 +1125,17 @@ img[src="https://www.000webhost.com/static/default.000webhost.com/images/powered
     background-color: #f44336;
     color: white;
 }
+
+.alertabutton{
+    display: flex;
+    align-items: center;
+   
+    padding: 10px 0;
+}
+.nav li:hover{
+    color: white;
+    transition: 0.4s;
+}
+.alertabutton span{
+    margin-right: 14px;
+}
