@@ -73,7 +73,7 @@
 				<li class="dropdown">
 					<a href="#" class="dropbtn"> <span class="material-symbols-outlined">patient_list</span> </a>
       				<div class="dropdown-content">
-        				<a href="index.php?vista=listaDePacientes">Listado de emergencias</a>
+        				<a href="index.php?vista=listaDePacientes">Listado de pacientes</a>
         				<a href="index.php?vista=ingresarPacienteForm">Ingresar paciente</a>
       				</div> 
 				</li>
@@ -125,7 +125,32 @@
 				<li class="antidropdown">
 					<a href="./index.php?vista=listaDeCuentas"> <span class="material-symbols-outlined">manage_accounts</span> Administrar cuentas </a>
 				</li>
+
+				<li class="dropdown">
+					<a href="./index.php?vista=listaDeEmergencias"> <span class="material-symbols-outlined">e911_emergency</span> </a>
+					<span class="tooltip"> Registro de emergencias</span>
+				</li>
+				<li class="antidropdown">
+					<a href="./index.php?vista=listaDeEmergencias"> <span class="material-symbols-outlined">e911_emergency</span> Registro de emergencias </a>
+				</li>
 				
+				
+				<li>
+					<label for=""></label>
+					<form action="./logica/alertas.php" class="formularioAjax">
+						<input type="hidden" name="habitacion_id" value="2">
+						<button type="submit" class="alertabutton"> <span class="material-symbols-outlined">emergency_home</span></button>
+						
+					</form>
+				</li>
+				<li class="antidropdown">
+					<form action="./logica/alertas.php" class="FormularioAjax">
+						<input type="hidden" name="habitacion_id" value="2">
+						<button type="submit" class="alertabutton"> <span class="material-symbols-outlined">emergency_home</span></button>
+						
+					</form>
+					
+				</li>
 
 				<li class="is-in-dropdown dropdown-download"> 
 					<a class="navoption download" href="./index.php?vista=home#home_downloads"> <span class="material-symbols-outlined navicon">download</span> Descargas</a> 
