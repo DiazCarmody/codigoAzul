@@ -19,7 +19,7 @@ $actualizar->execute($arrayUpdate);
 	<div class="gencode">
 
 		<div class="gencodecard">
-			<h2>¡Tu primer login! <?php echo $usuario;?></h2>
+			<h2>¡Tu primer login! <?php echo $email;?></h2>
 			<p>Tu código de acceso es : <b id="miTexto"><?php echo $claveAutentificacion; ?></b></p>
 			<p>¡Recuerda copiar tu código para no perdelo!</p>
 			<button onclick="copiarContenido()">¡Copiar!</button>
