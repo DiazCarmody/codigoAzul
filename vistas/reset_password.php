@@ -52,7 +52,7 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
     }
 }
 ?>
-<main>
+<main class="formmain">
     <form method="POST" action="" class="codigoform">
         <h2>Introduzca una nueva contraseña</h2>
         <!-- <div class="form-rest"></div> -->

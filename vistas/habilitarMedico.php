@@ -29,8 +29,11 @@
 			<label for="medico_apellido">Apellido del médico</label>
 			<input type="text" name="medico_apellido" placeholder="Apellido del médico" required>
 
-			<label for="medico_dni">DNI</label>
-			<input type="number" name="new_dni" placeholder="DNI" required>
+			<label for="medico_dni">Email</label>
+			<input type="Email" name="new_email" placeholder="Email" required>
+
+			<label for="medico_dni">Numero de telefono</label>
+			<input type="number" name="numero_telefono" placeholder="Numero de telefono" required>
 
 			<label for="medico_especializacion">Elija la especialidad del médico</label>
 			<select name="medico_especializacion" class="input">

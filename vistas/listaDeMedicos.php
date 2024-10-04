@@ -102,7 +102,7 @@
 					<tr>'.
 						'<td data-cell="Nombre"> <span>'.$datos['medico_nombre'].'</span> </td>'.
 						'<td data-cell="Apellido"> <span>'.$datos['medico_apellido'].'</span> </td>'.
-						'<td data-cell="Apellido"> <span>'.$datos['medico_dni'].'</span> </td>'.
+						'<td data-cell="Apellido"> <span>'.$datos['medico_telefono'].'</span> </td>'.
 						'<td data-cell="Apellido"> <span>'.$datos['especializacion_nombre'].'</span> </td>'.
 
 						'<td data-cell="Editar">

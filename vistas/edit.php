@@ -2,7 +2,7 @@
 if (isset($_SESSION['cargo'])) {
 	$id_cargo=$_SESSION['cargo'];
 }
-if ($id_cargo!=1 or isset($id_cargo)) {
+if ($id_cargo!=1 or !isset($id_cargo)) {
 	echo'
 	<script>
 	alert("Usted no está autorizado.");

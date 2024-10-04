@@ -25,7 +25,7 @@
 			<tr>'.
 				'<td>'.$datos['usuario_nombre'].'</td>'.
 				'<td>'.$datos['usuario_apellido'].'</td>'.
-				'<td>'.$datos['usuario_username'].'</td>'.
+				'<td>'.$datos['usuario_email'].'</td>'.
 			'</tr>';
 		}?>
 	</table>

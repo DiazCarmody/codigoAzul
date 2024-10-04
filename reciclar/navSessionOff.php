@@ -6,9 +6,9 @@
 
 <header> 
 
-        <a href="#" class="backbutton"> <span class="material-symbols-outlined">arrow_back</span> </a>
+        <a href="./index.php?vista=home" class="backbutton"> <span class="material-symbols-outlined">arrow_back</span> </a>
 
-        <a> <img src="./vistas/images/icon.png" alt="Logo"> <span>Código azul</span> </a> 
+        <a href="./index.php?vista=home"> <img src="./vistas/images/icon.png" alt="Logo"> <span>Código azul</span> </a> 
 
         <label for="toggler" id="darkmode">
             <span class="material-symbols-outlined" id="lightmodeicon">light_mode</span> 
