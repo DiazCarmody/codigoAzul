@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-09-2024 a las 22:08:38
+-- Tiempo de generación: 04-10-2024 a las 20:52:22
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -56,7 +56,36 @@ INSERT INTO `alertas` (`alerta_id`, `habitacion_id`, `fecha_hora`) VALUES
 (21, 2, '2024-09-25 16:52:54'),
 (22, 2, '2024-09-25 16:55:37'),
 (23, 2, '2024-09-25 16:58:54'),
-(24, 2, '2024-09-25 17:00:25');
+(24, 2, '2024-09-25 17:00:25'),
+(25, 2, '2024-09-25 18:09:09'),
+(26, 2, '2024-09-26 11:18:36'),
+(27, 2, '2024-09-26 11:31:26'),
+(28, 2, '2024-09-26 11:31:56'),
+(29, 2, '2024-09-26 11:33:14'),
+(30, 2, '2024-09-26 11:34:27'),
+(31, 3, '2024-09-26 11:39:59'),
+(32, 3, '2024-09-26 11:54:28'),
+(33, 3, '2024-09-26 12:03:37'),
+(34, 3, '2024-09-27 08:48:18'),
+(35, 3, '2024-09-27 08:48:48'),
+(36, 3, '2024-09-27 08:55:22'),
+(37, 3, '2024-09-27 09:05:05'),
+(38, 3, '2024-09-27 09:30:54'),
+(39, 3, '2024-09-27 09:52:05'),
+(40, 2, '2024-09-27 09:58:30'),
+(41, 3, '2024-09-27 10:28:03'),
+(42, 3, '2024-09-27 10:31:58'),
+(43, 3, '2024-09-27 10:39:47'),
+(44, 3, '2024-09-27 10:41:37'),
+(45, 3, '2024-09-27 10:47:18'),
+(46, 3, '2024-09-27 13:38:11'),
+(47, 3, '2024-09-27 15:11:08'),
+(48, 3, '2024-09-27 15:23:38'),
+(49, 3, '2024-09-27 15:23:58'),
+(50, 3, '2024-09-27 15:40:54'),
+(51, 3, '2024-09-27 15:42:11'),
+(52, 3, '2024-09-27 15:54:40'),
+(53, 3, '2024-09-27 16:18:54');
 
 --
 -- Disparadores `alertas`
@@ -104,7 +133,36 @@ INSERT INTO `alertas_pendientes` (`alertaPendiente_id`, `alerta_id`, `procesado`
 (17, 21, 1),
 (18, 22, 1),
 (19, 23, 1),
-(20, 24, 1);
+(20, 24, 1),
+(21, 25, 1),
+(22, 26, 1),
+(23, 27, 1),
+(24, 28, 1),
+(25, 29, 1),
+(26, 30, 1),
+(27, 31, 1),
+(28, 32, 1),
+(29, 33, 1),
+(30, 34, 1),
+(31, 35, 1),
+(32, 36, 1),
+(33, 37, 1),
+(34, 38, 1),
+(35, 39, 1),
+(36, 40, 1),
+(37, 41, 1),
+(38, 42, 1),
+(39, 43, 1),
+(40, 44, 1),
+(41, 45, 1),
+(42, 46, 1),
+(43, 47, 1),
+(44, 48, 1),
+(45, 49, 1),
+(46, 50, 1),
+(47, 51, 1),
+(48, 52, 1),
+(49, 53, 1);
 
 -- --------------------------------------------------------
 
@@ -126,7 +184,8 @@ INSERT INTO `areas` (`area_id`, `area_nombre`) VALUES
 (8, 'Area 2'),
 (9, 'Area 3'),
 (30, 'Area 4'),
-(31, 'Area 5');
+(31, 'Area 5'),
+(33, 'Area especial');
 
 -- --------------------------------------------------------
 
@@ -193,7 +252,8 @@ INSERT INTO `habitaciones` (`habitacion_id`, `habitacion_nombre`, `id_area`) VAL
 (9, 'Habitacion 4', 8),
 (22, 'Habitacion 5', 2),
 (23, 'a1', 2),
-(24, 'b2', 8);
+(24, 'b2', 8),
+(25, 'habitacion especial', 33);
 
 -- --------------------------------------------------------
 
@@ -205,7 +265,8 @@ CREATE TABLE `medicos` (
   `medico_id` int(11) NOT NULL,
   `medico_nombre` text NOT NULL,
   `medico_apellido` text NOT NULL,
-  `medico_dni` int(30) NOT NULL,
+  `medico_email` varchar(250) DEFAULT NULL,
+  `medico_telefono` varchar(250) DEFAULT NULL,
   `medico_especializacion` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -213,13 +274,15 @@ CREATE TABLE `medicos` (
 -- Volcado de datos para la tabla `medicos`
 --
 
-INSERT INTO `medicos` (`medico_id`, `medico_nombre`, `medico_apellido`, `medico_dni`, `medico_especializacion`) VALUES
-(7, 'Medico', 'N1', 111, 1),
-(9, 'Medico', 'N2', 222, 3),
-(10, 'Medico', 'N3', 333, 1),
-(17, 'Medico', 'N4', 444, 1),
-(19, 'Medico', 'N5', 555, 1),
-(51, 'aa', 'aa', 1234, 2);
+INSERT INTO `medicos` (`medico_id`, `medico_nombre`, `medico_apellido`, `medico_email`, `medico_telefono`, `medico_especializacion`) VALUES
+(7, 'Medico', 'N1', NULL, NULL, 1),
+(9, 'Medico', 'N2', NULL, NULL, 3),
+(10, 'Medico', 'N3', NULL, NULL, 1),
+(17, 'Medico', 'N4', NULL, NULL, 1),
+(19, 'Medico', 'N5', NULL, NULL, 1),
+(51, 'aa', 'aa', NULL, NULL, 2),
+(52, 'hola', 'hola', NULL, NULL, 3),
+(53, 'jorge', 'peñarol', NULL, NULL, 4);
 
 -- --------------------------------------------------------
 
@@ -244,14 +307,13 @@ CREATE TABLE `pacientes` (
 --
 
 INSERT INTO `pacientes` (`paciente_id`, `paciente_nombre`, `paciente_apellido`, `paciente_edad`, `paciente_domicilio`, `paciente_datosmedicos`, `paciente_fechaIngreso`, `id_medico`, `id_habitacion`) VALUES
-(44, 'Paciente', 'N1', 1, 'Home', 'Data', '2024-07-02 19:53:56', 51, 23),
+(44, 'Paciente', 'Rodriguez', 1, 'Home3', 'Data', '2024-07-02 19:53:56', 51, 23),
 (45, 'Paciente', 'N2', 2, 'Home', 'Data', '2024-07-02 19:53:56', 19, 2),
 (46, 'Paciente', 'N3', 3, 'Home', 'Data', '2024-07-02 19:54:31', 7, 9),
 (47, 'Paciente', 'N4', 4, 'Home', 'Data', '2024-07-02 19:54:31', 7, 4),
 (48, 'Paciente', 'N5', 5, 'Home', '0', '2024-07-02 19:54:49', 9, 2),
-(51, 'Brandon', 'Zárate', 19, 'no tengo idea', 'Se tiñó el pelo y así quedó', '2024-07-06 20:11:53', 7, 3),
-(52, 'Valentín', 'Cortese', 18, 'Cerca de mi casa', 'je, je, je. Si lo digo me cancelan', '2024-07-06 20:11:53', 19, 9),
-(53, 'fausto', 'Díaz Carmody', 18, 'Chile 1134', 'Fiebre, fatiga', '2024-08-08 10:28:14', 9, 3);
+(53, 'fausto', 'Díaz Carmody', 18, 'Chile 1134', 'Fiebre, fatiga', '2024-08-08 10:28:14', 9, 3),
+(54, 'po', 'po', 19, 'Gral. Paz 432', 'Fiebre, fatiga', '2024-09-27 08:57:53', 10, 4);
 
 -- --------------------------------------------------------
 
@@ -317,22 +379,11 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`usuario_id`, `usuario_nombre`, `usuario_apellido`, `usuario_email`, `usuario_clave`, `autentificacion`, `id_cargo`) VALUES
 (1, 'Fausto', 'Díaz Carmody', 'diazcarmodyfausto@gmail.com', '$2y$10$FEJY9z1eyB5dQ0Kpv2U8DOGqUPMGjwR8qDC9kHKUl9LyR7BMj5une', 4683, 1),
-(2, 'prueba', 'prueba', 'prueba', '$2y$10$dL/hwz80zrA5KaQ6fjqbL.j.ULBBRgL3KuiPCvFwy6P218fvbElY2', 0, 3),
-(3, 'Donza', 'Maximo', 'MaximoDonza', '$2y$10$/gY5B6yCT.u8xrxhV/H9huDaRn0.9Ha0ERDMVjOv1/z14DhcUvKAq', 0, 3),
-(4, 'prueba3', 'prueba3', 'prueba3', '$2y$10$V0zQIXeFFcBBxQr3Hu.qBO5iNhSH9uTMw6w0KLw3W/zVj/rh/Xqje', 0, 3),
 (5, 'Santi', 'Henze', 'santi.henze2@gmail.com', '1234', 7305, 2),
-(6, 'Maximiliano', 'Acuña', 'maxi123', '$2y$10$/TXmNS1EACbbUUKh81bTdepVKaU3D4j8U3NkLtRBdvBMCmcGtGjMa', 7305, 3),
-(7, 'testeo', 'testeo', 'testeo', '$2y$10$p/tRttizkExI7LZpuPpCD.sHXerJLUakdXz.PdSJr0Om1WEdmMEn6', 1346, 2),
-(8, 'Carlos', 'Di CIcco', 'CARLOSANASHEI123', '$2y$10$C8.y2QKsqFvLIWAku.QWf.LuyKKlDpDkZbZkcZ1hh0dJvPDdaB/Fe', 8101, 2),
-(10, 'test', 'testeo', 'testusuario', '$2y$10$6fFUQo11Kb5FOVPCwd0sAOFt3PVRyDbkM.RUDvk1jLUL9dDuQTM2O', 3462, 2),
-(11, 'Damián', 'Sala', 'ELDAMII', '$2y$10$iExiFxPoVt0EbnGOkAYoPupf3/7aWybRwiJEpe.ubQ9HW849glIHy', 3889, 3),
-(12, 'test', 'teste', 'pruebass', '$2y$10$/BEy2GuYPbfJUkqIDGwUuullq7Z4441t.trk6F.Q/yYJhJqAQBOqC', 5311, 2),
 (13, 'admin', 'admin', 'admin@gmail.com', '$2y$10$pT2Y4zDoewJSxleri03ua.xqRrhYi9FMkrAY5DePkVaR4CmaHGH6a', 3864, 1),
-(14, 'test', 'test', 'test01', '$2y$10$h3pudApyEntNxHE3YN2m5u8UesV3P4TuKMgysaTz7dkvNEfuPnTRW', 0, 2),
 (15, 'Santiago', 'Zazo', 'szazo39@gmail.com', '$2y$10$7rn5AEP/2HPCgb9KXy.uoOVSPUcZEYHuyr6UIlpn.xlhGzsRAPMaG', 0, 1),
-(16, 'Miguel', 'Laiun', 'Miguel Laiun', '$2y$10$anG9pSRYbvM.9PlM02ACEuIp/lB.mgPRTwxX5EG5a0e5IZ5uYiy3O', 8863, 1),
 (17, 'Fausto', 'Díaz Carmody', '0800fau@gmail.com', '$2y$10$OuGjOCtVKj1p1QcUzqYXguxayhR2xaixpDNY5043b.2UqQSdWOB7K', 5465, 1),
-(18, 'Claudio Damián', 'Sala', 'damisala13@gmail.com', '$2y$10$Ye6IBF5Pgnrgcw8GyfGFUOaYNMpF4UGwaHQNrx3qSH7k3IRRZq8xC', 0, 1);
+(18, 'Claudio Damián', 'Sala', 'damisala13@gmail.com', '$2y$10$LHoc9qNwrId0bs3HYE2OVef8RswZX96cMKhsgSU4to16AN81kKqZ2', 7355, 1);
 
 --
 -- Índices para tablas volcadas
@@ -412,19 +463,19 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `alertas`
 --
 ALTER TABLE `alertas`
-  MODIFY `alerta_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `alerta_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT de la tabla `alertas_pendientes`
 --
 ALTER TABLE `alertas_pendientes`
-  MODIFY `alertaPendiente_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `alertaPendiente_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT de la tabla `areas`
 --
 ALTER TABLE `areas`
-  MODIFY `area_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `area_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT de la tabla `cargo`
@@ -442,25 +493,25 @@ ALTER TABLE `especializaciones`
 -- AUTO_INCREMENT de la tabla `habitaciones`
 --
 ALTER TABLE `habitaciones`
-  MODIFY `habitacion_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `habitacion_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de la tabla `medicos`
 --
 ALTER TABLE `medicos`
-  MODIFY `medico_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `medico_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT de la tabla `pacientes`
 --
 ALTER TABLE `pacientes`
-  MODIFY `paciente_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `paciente_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT de la tabla `tokens`
 --
 ALTER TABLE `tokens`
-  MODIFY `token_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `token_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
