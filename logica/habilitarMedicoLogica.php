@@ -2,18 +2,20 @@
 require_once('./main.php');
 $nombre=limpiarString($_POST['medico_nombre']);
 $apellido=limpiarString($_POST['medico_apellido']);
-$dni=limpiarString($_POST['new_dni']);
+$dni=limpiarString($_POST['new_email']);
+$telefono=limpiarString($_POST['numero_telefono']);
 $especializacion=limpiarString($_POST['medico_especializacion']);
 $conexion=conectar();
 // $conexion2=conectar2();
-$queryMedico=$conexion->prepare("INSERT INTO `medicos`(`medico_id`, `medico_nombre`, `medico_apellido`, `medico_dni`, `medico_especializacion`) VALUES (NULL,:nombre,:apellido,:dni,:especializacion)");
+$queryMedico=$conexion->prepare("INSERT INTO `medicos`(`medico_id`, `medico_nombre`, `medico_apellido`, `medico_email`, `medico_telefono`, `medico_especializacion`) VALUES (NULL,:nombre,:apellido,:email, :telefono,:especializacion)");
 	$arrayMedicos=[
 	":nombre"=>$nombre,
 	":apellido"=>$apellido,
-	":dni"=>$dni,
+	":email"=>$email,
+	":telefono"=>$telefono,
 	":especializacion"=>$especializacion
 ];
-$checkUsername=$conexion->query("SELECT * FROM medicos WHERE medico_dni = '$dni';");
+$checkUsername=$conexion->query("SELECT * FROM medicos WHERE medico_email = '$email';");
 if($checkUsername->rowCount()==1){
 	echo'
 	<div class="button is-danger">
