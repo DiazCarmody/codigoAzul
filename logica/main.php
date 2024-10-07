@@ -1,6 +1,8 @@
 <?php
 //HECHO POR FAUSTO.
-// 
+//
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception; 
 //función de conexión a la base de datos.
 function conectar(){
 	$pdo = new PDO('mysql:host=localhost;dbname=hospital','root','');
@@ -75,4 +77,72 @@ function generarCodigoAutentificacion(){
 	return $codigoAutentificacion;
 }
 //Función para generar un código de autentificación
+//Función para enviar emails
+function enviarEmail($emailReceptor, $subject, $message){
+	require_once '../librerias/PHPMailer/src/PHPMailer.php';
+	require_once '../librerias/PHPMailer/src/Exception.php';
+	require_once '../librerias/PHPMailer/src/SMTP.php';
+	$appPassword="";
+    //to es el receptor. ej= $to = $email;
+    //subject es el título. ej= $subject = "Restablecer contraseña";
+    //message es el contenido. ej= $message = "Para restablecer tu contraseña, copia y pega el siguiente enlace: \n\n$resetUrl";
+    //$message .= "\n\nEste enlace expirará en 1 hora.";
+    $mail = new PHPMailer(true);
+    // $mail->SMTPDebug = 2; // Habilita la salida de depuración detallada
+    // $mail->Debugoutput = 'html'; // Formatea la salida como HT
+    $mail->isSMTP();
+    $mail->Host       = 'smtp.gmail.com';
+    $mail->SMTPAuth   = true;
+    $mail->Username   = '@gmail.com'; // Tu correo Gmail
+    $mail->Password   = $appPassword; // Tu contraseña de aplicación de Gmail
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // Cambiado a SMTPS (SSL)
+    $mail->Port       = 465; // Puerto para SSL
+
+    $mail->setFrom('correo', 'nombre');
+    $mail->addAddress($emailReceptor);
+
+    $mail->isHTML(true);
+    $mail->CharSet = 'UTF-8'; // Asegura que los caracteres especiales se muestren correctamente
+    $mail->Subject = $subject;
+    $mail->Body    = $message;
+
+    return $mail->send();
+}
+//Función para enviar emails
+//Función para Enviar mensajes de WSP.
+function enviarMensaje($telefono, $mensaje){
+	$params=array(
+		'token' => 'fkd9nis2e7rrgkkm',
+		'to' => $telefono,
+		'body' => $mensaje 
+		);
+		$curl = curl_init();
+		curl_setopt_array($curl, array(
+		CURLOPT_URL => "https://api.ultramsg.com/instance96184/messages/chat",
+		CURLOPT_RETURNTRANSFER => true,
+		CURLOPT_ENCODING => "",
+		CURLOPT_MAXREDIRS => 10,
+		CURLOPT_TIMEOUT => 30,
+		CURLOPT_SSL_VERIFYHOST => 0,
+		CURLOPT_SSL_VERIFYPEER => 0,
+		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+		CURLOPT_CUSTOMREQUEST => "POST",
+		CURLOPT_POSTFIELDS => http_build_query($params),
+		CURLOPT_HTTPHEADER => array(
+			"content-type: application/x-www-form-urlencoded"
+		),
+		));
+		
+		$response = curl_exec($curl);
+		$err = curl_error($curl);
+		
+		curl_close($curl);
+		
+		if ($err) {
+		echo "cURL Error #:" . $err;
+		} else {
+		echo $response;
+		}
+}
+//Función para Enviar mensajes de WSP.
 ?>
