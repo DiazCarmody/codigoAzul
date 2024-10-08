@@ -1,10 +1,10 @@
 <?php
 
 
-$params=array(
-'token' => 'fkd9nis2e7rrgkkm',
-'to' => '+542364719151',
-'body' => '¡Emergencia en la habitacion 2, area 8!' 
+$params = array(
+  'token' => 'fkd9nis2e7rrgkkm',
+  'to' => '+542364719151',
+  'body' => '¡Emergencia en la habitacion 2, area 8!'
 );
 $curl = curl_init();
 curl_setopt_array($curl, array(
@@ -33,3 +33,23 @@ if ($err) {
 } else {
   echo $response;
 }
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mensaje de Whatsapp</title>
+</head>
+
+<body>
+  <main class="formmain">
+    <form method="POST" action="" class="codigoform">
+      <h2>¡Mensaje enviado!</h2>
+      <input type="submit" value="Volver">
+    </form>
+  </main>
+</body>
+
+</html>

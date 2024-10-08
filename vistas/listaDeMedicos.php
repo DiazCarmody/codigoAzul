@@ -81,7 +81,10 @@
 						<span> Apellido </span>
 					</th>
 					<th> 
-						<span> DNI </span>
+						<span> Email </span>
+					</th>
+					<th> 
+						<span> Telefono </span>
 					</th>
 					<th> 
 						<span> Especialización </span>
@@ -102,8 +105,9 @@
 					<tr>'.
 						'<td data-cell="Nombre"> <span>'.$datos['medico_nombre'].'</span> </td>'.
 						'<td data-cell="Apellido"> <span>'.$datos['medico_apellido'].'</span> </td>'.
-						'<td data-cell="Apellido"> <span>'.$datos['medico_telefono'].'</span> </td>'.
-						'<td data-cell="Apellido"> <span>'.$datos['especializacion_nombre'].'</span> </td>'.
+						'<td data-cell="email"> <span>'.$datos['medico_email'].'</span> </td>'.
+						'<td data-cell="telefono"> <span>'.$datos['medico_telefono'].'</span> </td>'.
+						'<td data-cell="especializacion"> <span>'.$datos['especializacion_nombre'].'</span> </td>'.
 
 						'<td data-cell="Editar">
 
@@ -111,7 +115,8 @@
 								<input type="hidden" name="id" value='.$datos['medico_id'].'>
 								<input type="hidden" name="nombre" value='.$nombre.'>
 								<input type="hidden" name="apellido" value='.$apellido.'>
-								<input type="hidden" name="dni" value='.$datos['medico_dni'].'>
+								<input type="hidden" name="email" value='.$datos['medico_email'].'>
+								<input type="hidden" name="telefono" value='.$datos['medico_telefono'].'>
 								<input type="hidden" name="especializacion" value='.$datos['medico_especializacion'].'>
 								<input type="hidden" name="page" value="listaDeMedicos">
 								<input type="submit" class="editar" value="Editar">

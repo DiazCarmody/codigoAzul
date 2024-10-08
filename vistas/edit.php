@@ -135,7 +135,8 @@ if ($id_cargo!=1 or !isset($id_cargo)) {
 
 			$nombre = urldecode($_POST['nombre']);
 			$apellido= urldecode($_POST['apellido']); 
-			$dni = $_POST['dni']; ?>
+			$email = $_POST['email'];
+			$tel = $_POST['telefono']?>
 		<main class="formmain">
 		<form action="./vistas/update.php" method="POST" class="FormularioAjax codigoform">
 
@@ -150,8 +151,11 @@ if ($id_cargo!=1 or !isset($id_cargo)) {
 			<label for="enfermero_apellido">Apellido</label>
 			<input type="text" name="new_apellido" placeholder="Apellido del médico" value = '<?php echo $apellido?>' required>
 
-			<label for="enfermero_dni">DNI</label>
-			<input type="number" name="new_dni" placeholder="DNI" value = <?php echo $dni?> required>
+			<label for="enfermero_email">Email</label>
+			<input type="email" name="new_email" placeholder="Email" value = '<?php echo $email?>' required>
+
+			<label for="enfermero_telefono">Telefono</label>
+			<input type="number" name="new_telefono" placeholder="Telefono" value = '<?php echo $tel?>' required>
 
 			
 			<label for="medico_rol">Elija la especialidad del médico</label>

@@ -38,14 +38,16 @@ try {
         $sql = "UPDATE medicos
                 SET medico_nombre = :nombre, 
                     medico_apellido = :apellido,
-                    medico_dni = :dni,
+                    medico_email = :email,
+                    medico_telefono = :telefono,
                     medico_especializacion = :especializacion
                 WHERE medico_id = :ide";
         $stmt = $conexion->prepare($sql);
         $stmt->execute([
             ':nombre' => $_POST['new_nombre'],
             ':apellido' => $_POST['new_apellido'],
-            ':dni' => $_POST['new_dni'],
+            ':email' => $_POST['new_email'],
+            ':telefono' => $_POST['new_telefono'],
             ':especializacion' => $_POST['medico_especializacion'],
             ':ide' => $ide
         ]);
