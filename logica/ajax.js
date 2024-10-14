@@ -1,36 +1,32 @@
-const formularios_ajax=document.querySelectorAll(".FormularioAjax");
+const formularios_ajax = document.querySelectorAll(".FormularioAjax");
 
-function enviar_formulario_ajax(e){
+function enviar_formulario_ajax(e) {
     e.preventDefault();
 
-    let enviar=confirm("¿Desea enviar el formulario?");
+    // No hay confirmación, directamente se envía el formulario
 
-    if(enviar==true){
+    let data = new FormData(this);
+    let method = this.getAttribute("method");
+    let action = this.getAttribute("action");
 
-        let data= new FormData(this);
-        let method=this.getAttribute("method");
-        let action=this.getAttribute("action");
+    let encabezados = new Headers();
 
-        let encabezados= new Headers();
+    let config = {
+        method: method,
+        headers: encabezados,
+        mode: 'cors',
+        cache: 'no-cache',
+        body: data
+    };
 
-        let config={
-            method: method,
-            headers: encabezados,
-            mode: 'cors',
-            cache: 'no-cache',
-            body: data
-        };
-
-        fetch(action,config)
-        .then(respuesta => respuesta.text())
-        .then(respuesta =>{ 
-            let contenedor=document.querySelector(".form-rest");
-            contenedor.innerHTML = respuesta;
-        });
-    }
-
+    fetch(action, config)
+    .then(respuesta => respuesta.text())
+    .then(respuesta => { 
+        let contenedor = document.querySelector(".form-rest");
+        contenedor.innerHTML = respuesta;
+    });
 }
 
-formularios_ajax.forEach(formularios => {
-    formularios.addEventListener("submit",enviar_formulario_ajax);
+formularios_ajax.forEach(formulario => {
+    formulario.addEventListener("submit", enviar_formulario_ajax);
 });

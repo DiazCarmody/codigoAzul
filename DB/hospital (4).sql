@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-10-2024 a las 20:52:22
+-- Tiempo de generación: 14-10-2024 a las 04:56:06
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.0.30
 
@@ -85,7 +85,18 @@ INSERT INTO `alertas` (`alerta_id`, `habitacion_id`, `fecha_hora`) VALUES
 (50, 3, '2024-09-27 15:40:54'),
 (51, 3, '2024-09-27 15:42:11'),
 (52, 3, '2024-09-27 15:54:40'),
-(53, 3, '2024-09-27 16:18:54');
+(53, 3, '2024-09-27 16:18:54'),
+(54, 2, '2024-10-06 18:57:29'),
+(55, 2, '2024-10-08 14:08:28'),
+(56, 2, '2024-10-08 14:08:52'),
+(57, 2, '2024-10-08 14:11:30'),
+(58, 2, '2024-10-10 15:47:15'),
+(59, 2, '2024-10-11 23:51:18'),
+(60, 2, '2024-10-13 16:10:31'),
+(61, 25, '2024-10-13 19:09:05'),
+(62, 25, '2024-10-13 19:13:00'),
+(63, 25, '2024-10-13 19:40:10'),
+(64, 25, '2024-10-13 19:45:32');
 
 --
 -- Disparadores `alertas`
@@ -162,7 +173,18 @@ INSERT INTO `alertas_pendientes` (`alertaPendiente_id`, `alerta_id`, `procesado`
 (46, 50, 1),
 (47, 51, 1),
 (48, 52, 1),
-(49, 53, 1);
+(49, 53, 1),
+(50, 54, 1),
+(51, 55, 1),
+(52, 56, 1),
+(53, 57, 1),
+(54, 58, 1),
+(55, 59, 1),
+(56, 60, 1),
+(57, 61, 1),
+(58, 62, 1),
+(59, 63, 1),
+(60, 64, 1);
 
 -- --------------------------------------------------------
 
@@ -282,7 +304,8 @@ INSERT INTO `medicos` (`medico_id`, `medico_nombre`, `medico_apellido`, `medico_
 (19, 'Medico', 'N5', NULL, NULL, 1),
 (51, 'aa', 'aa', NULL, NULL, 2),
 (52, 'hola', 'hola', NULL, NULL, 3),
-(53, 'jorge', 'peñarol', NULL, NULL, 4);
+(53, 'jorge', 'peñarol', NULL, NULL, 4),
+(54, 'Fausto', 'Díaz Carmody', 'diazcarmodyfausto@gmail.com', '2364719151', 2);
 
 -- --------------------------------------------------------
 
@@ -313,7 +336,8 @@ INSERT INTO `pacientes` (`paciente_id`, `paciente_nombre`, `paciente_apellido`, 
 (47, 'Paciente', 'N4', 4, 'Home', 'Data', '2024-07-02 19:54:31', 7, 4),
 (48, 'Paciente', 'N5', 5, 'Home', '0', '2024-07-02 19:54:49', 9, 2),
 (53, 'fausto', 'Díaz Carmody', 18, 'Chile 1134', 'Fiebre, fatiga', '2024-08-08 10:28:14', 9, 3),
-(54, 'po', 'po', 19, 'Gral. Paz 432', 'Fiebre, fatiga', '2024-09-27 08:57:53', 10, 4);
+(54, 'po', 'po', 19, 'Gral. Paz 432', 'Fiebre, fatiga', '2024-09-27 08:57:53', 10, 4),
+(57, 'Claudo Damián', 'Sala', 19, 'Recontra lejos de la sociedad', 'Paciente especial :)', '2024-10-13 16:12:29', 54, 25);
 
 -- --------------------------------------------------------
 
@@ -463,13 +487,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `alertas`
 --
 ALTER TABLE `alertas`
-  MODIFY `alerta_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `alerta_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT de la tabla `alertas_pendientes`
 --
 ALTER TABLE `alertas_pendientes`
-  MODIFY `alertaPendiente_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `alertaPendiente_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT de la tabla `areas`
@@ -499,13 +523,13 @@ ALTER TABLE `habitaciones`
 -- AUTO_INCREMENT de la tabla `medicos`
 --
 ALTER TABLE `medicos`
-  MODIFY `medico_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `medico_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT de la tabla `pacientes`
 --
 ALTER TABLE `pacientes`
-  MODIFY `paciente_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `paciente_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT de la tabla `tokens`
@@ -517,7 +541,7 @@ ALTER TABLE `tokens`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Restricciones para tablas volcadas

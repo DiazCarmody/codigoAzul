@@ -1,13 +1,28 @@
 <?php
 require_once('./main.php');
 if ($_SERVER['REQUEST_METHOD'] == "POST"){
-    if (isset($_POST['mensaje']) && isset($_POST['telefono'])) {
-        // Limpiar los datos de entrada
-      $mensaje = ($_POST['mensaje']);
-      $telefono = limpiarString($_POST['telefono']);
-    }else{
-      echo "ERROR";
-    }
+      // Limpiar los datos de entrada
+      //en este caso, el id de habitación es fijo para hacerlo más rápido
+      $id_habitacion=25;
+      $con=conectar();
+      $query=$con->prepare("SELECT * FROM pacientes INNER JOIN habitaciones ON pacientes.id_habitacion = habitaciones.habitacion_id INNER JOIN medicos ON pacientes.id_medico = medicos.medico_id INNER JOIN areas ON areas.area_id=habitaciones.id_area WHERE habitacion_id = :id_habitacion;
+      ");
+      $arrayBuscarHab=[
+        ":id_habitacion"=>$id_habitacion
+      ];
+      $query->execute($arrayBuscarHab);
+      if($query->rowCount()>0){
+        $datosPaciente=$query->fetch();
+      }else{
+        $datosPaciente=null;
+      }
+      $apellidoMedico=$datosPaciente['medico_apellido'];
+      $nombreMedico=$datosPaciente['medico_nombre'];
+      $nombreHabitacion=$datosPaciente['habitacion_nombre'];
+      $nombreArea=$datosPaciente['area_nombre'];
+      $mensaje = "Dr. ".$apellidoMedico." ".$nombreMedico." ";
+      $mensaje .="Se solicita su presencia en Habitación : ".$nombreHabitacion." Área : ".$nombreArea;
+      $telefono =$datosPaciente['medico_telefono'];
   $params=array(
   'token' => 'fkd9nis2e7rrgkkm',
   'to' => '+54'.$telefono,

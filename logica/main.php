@@ -110,39 +110,55 @@ function enviarEmail($emailReceptor, $subject, $message){
 }
 //Función para enviar emails
 //Función para Enviar mensajes de WSP.
-function enviarMensaje($telefono, $mensaje){
-	$params=array(
-		'token' => 'fkd9nis2e7rrgkkm',
-		'to' => $telefono,
+function enviarMensaje($telefonoRef, $mensaje) {
+    // Validar el formato del teléfono (ejemplo sencillo, puedes mejorarlo)
+    if (!preg_match('/^\d+$/', $telefonoRef)) {
+        error_log("Número de teléfono inválido: " . $telefonoRef);
+        return false;
+    }
+    
+	$params = array(
+		'token' => 'fkd9nis2e7rrgkkm', // Poner el token directamente para probar
+		'to' => "+54" . $telefonoRef,
 		'body' => $mensaje 
-		);
-		$curl = curl_init();
-		curl_setopt_array($curl, array(
-		CURLOPT_URL => "https://api.ultramsg.com/instance96184/messages/chat",
-		CURLOPT_RETURNTRANSFER => true,
-		CURLOPT_ENCODING => "",
-		CURLOPT_MAXREDIRS => 10,
-		CURLOPT_TIMEOUT => 30,
-		CURLOPT_SSL_VERIFYHOST => 0,
-		CURLOPT_SSL_VERIFYPEER => 0,
-		CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-		CURLOPT_CUSTOMREQUEST => "POST",
-		CURLOPT_POSTFIELDS => http_build_query($params),
-		CURLOPT_HTTPHEADER => array(
-			"content-type: application/x-www-form-urlencoded"
-		),
-		));
-		
-		$response = curl_exec($curl);
-		$err = curl_error($curl);
-		
-		curl_close($curl);
-		
-		if ($err) {
-		echo "cURL Error #:" . $err;
-		} else {
-		echo $response;
-		}
+	);
+	
+
+    $curl = curl_init();
+    curl_setopt_array($curl, array(
+        CURLOPT_URL => getenv('ULTRAMSG_URL') . "/messages/chat", // URL desde variable de entorno
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => "",
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 10, // Reducir el timeout si es adecuado
+        CURLOPT_SSL_VERIFYHOST => 0,
+        CURLOPT_SSL_VERIFYPEER => 0,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => "POST",
+        CURLOPT_POSTFIELDS => http_build_query($params),
+        CURLOPT_HTTPHEADER => array(
+            "content-type: application/x-www-form-urlencoded"
+        ),
+    ));
+
+    $response = curl_exec($curl);
+    $httpCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+    $err = curl_error($curl);
+
+    curl_close($curl);
+
+    if ($err) {
+        error_log("cURL Error #:" . $err);
+        return false;
+    }
+
+    if ($httpCode >= 400) {
+        error_log("HTTP Error #: " . $httpCode . " - Response: " . $response);
+        return false; // Devolver false en caso de error HTTP
+    }
+
+    return $response; // Devolver la respuesta en cas5o de éxito
 }
+
 //Función para Enviar mensajes de WSP.
 ?>
