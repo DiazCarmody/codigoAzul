@@ -71,7 +71,7 @@ if($_SERVER['REQUEST_METHOD']=="POST"){
 }
 ?>
 <main class="formmain">
-        <form action="" method="POST" class="codigoform " >
+        <form action="" method="POST" class="codigoform">
             <h1>Recuperar contraseña</h1>
                 <?php if (isset($mensaje)){echo $mensaje;}?>
                 <!-- <div class="form-rest"></div> -->
