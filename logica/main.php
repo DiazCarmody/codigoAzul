@@ -43,7 +43,7 @@ function limpiarString($cadena){
 	$cadena=str_ireplace("==", "", $cadena);
 	$cadena=str_ireplace(";", "", $cadena);
 	$cadena=str_ireplace("::", "", $cadena);
-	$cadena=str_ireplace("AND", "", $cadena);
+	// $cadena=str_ireplace("AND", "", $cadena);
 	// $cadena=str_ireplace("OR", "", $cadena);
 	$cadena=str_ireplace("UNION", "", $cadena);
 	$cadena=str_ireplace("-", "", $cadena);

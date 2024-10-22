@@ -2,7 +2,7 @@
 require_once('./main.php');
 $nombre=limpiarString($_POST['medico_nombre']);
 $apellido=limpiarString($_POST['medico_apellido']);
-$dni=limpiarString($_POST['new_email']);
+$email=limpiarString($_POST['new_email']);
 $telefono=limpiarString($_POST['numero_telefono']);
 $especializacion=limpiarString($_POST['medico_especializacion']);
 $conexion=conectar();
@@ -19,7 +19,7 @@ $checkUsername=$conexion->query("SELECT * FROM medicos WHERE medico_email = '$em
 if($checkUsername->rowCount()==1){
 	echo'
 	<div class="button is-danger">
-		El DNI ya existe.
+		El Email ya existe.
 	</div>
 	';
 } 
@@ -32,7 +32,7 @@ else{
 
 	echo'
 	<div class="notification is-success">
-		Enfermero Habilitado correctamente.
+		Médico Habilitado correctamente.
 	</div>
 	';
 }

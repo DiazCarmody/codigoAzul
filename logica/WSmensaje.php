@@ -20,8 +20,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
       $nombreMedico=$datosPaciente['medico_nombre'];
       $nombreHabitacion=$datosPaciente['habitacion_nombre'];
       $nombreArea=$datosPaciente['area_nombre'];
-      $mensaje = "Dr. ".$apellidoMedico." ".$nombreMedico." ";
-      $mensaje .="Se solicita su presencia en Habitación : ".$nombreHabitacion." Área : ".$nombreArea;
+      $nombrePaciente=$datosPaciente['paciente_nombre'];
+      $apellidoPaciente=$datosPaciente['paciente_apellido'];
+      $mensaje = "Dr. ".$nombreMedico." ".$apellidoMedico."\n";
+      $mensaje .="Se solicita su presencia en Habitación : ".$nombreHabitacion.", Área : ".$nombreArea."\n";
+      $mensaje .="Paciente : ".$apellidoPaciente." ".$nombrePaciente;
       $telefono =$datosPaciente['medico_telefono'];
   $params=array(
   'token' => 'fkd9nis2e7rrgkkm',

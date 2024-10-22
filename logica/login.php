@@ -5,10 +5,10 @@ require_once('main.php');
 $email=limpiarString($_POST['email_usuario']);
 $clave=limpiarString($_POST['clave_usuario']);
 if ($email=="" || $clave=="") {
- 	echo "
- 	<div>
- 	<span class='estiloError'>DEBE LLENAR TODOS LOS CAMPOS</span>
- 	</div>";
+	echo "
+	<div>
+	<span class='estiloError'>DEBE LLENAR TODOS LOS CAMPOS</span>
+	</div>";
 	exit(); 
 }
 $check_user=conectar();
@@ -40,7 +40,7 @@ if ($check_user->rowCount()==1) {
 			<strong>ERROR</strong>
 			USUARIO O CONTRASEÑA INCORRECTOS
 			</div>
-			    <p>¿Olvidaste tu contraseña? <a style="text-decoration:none;" href="index.php?vista=recuperar_password">click aquí</a></p>
+			<p>¿Olvidaste tu contraseña? <a style="text-decoration:none;" href="index.php?vista=recuperar_password">click aquí</a></p>
 				';}	
 }else{
 	echo '
