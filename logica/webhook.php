@@ -1,50 +1,78 @@
 <?php
 require_once('./main.php');
-
-// Verificar si la solicitud es de tipo POST
-if ($_SERVER['REQUEST_METHOD'] == "POST") {
-    // Obtener el cuerpo de la solicitud
-    $input = file_get_contents('php://input');
-    // Decodificar el JSON recibido
-    $data = json_decode($input, true);
-
-    if ($data) {
-        // Extraer los datos del mensaje
-        $from = $data['from']; // El número de quien envía el mensaje
-        $body = isset($data['body']) ? $data['body'] : ''; // El contenido del mensaje (si es texto)
-        $media = isset($data['media']) ? $data['media'] : null; // Si el mensaje contiene archivos adjuntos
-
-        // Guardar el mensaje de texto en la base de datos
-        if ($body) {
-            $con = conectar();
-            $query = $con->prepare("INSERT INTO respuestas (numero, mensaje) VALUES (:froms, :body)");
-            $params=[
-                ':froms' => $from,
-                ':body' => $body
-            ];
-            $query->execute($params);
-        }
-
-        // Si se recibe un archivo multimedia
-        if ($media) {
-            // Procesar la descarga del archivo
-            $media_url = $media['url']; // URL para descargar el archivo
-            $media_type = $media['mime_type']; // Tipo de archivo (imagen, video, etc.)
+$con = conectar();
+$data = file_get_contents("php://input");
+$event = json_decode($data, true);
+if(isset($event)){
+    //Here, you now have event and can process them how you like e.g Add to the database or generate a response
+    $file = 'log.txt';  
+    $data =json_encode($event)."\n";  
+    file_put_contents($file, $data, FILE_APPEND | LOCK_EX);}
+    // Lee el contenido del archivo
+$file = 'log.txt';
+if (file_exists($file)) {
+    // Leer el contenido del archivo
+    $fileContents = file_get_contents($file);
+    
+    // Divide el contenido en líneas
+    $lines = explode("\n", trim($fileContents)); // Usa trim para eliminar saltos de línea extra
+    
+    foreach ($lines as $line) {
+        // Evita líneas vacías
+        if (!empty(trim($line))) {
+            // Decodifica el JSON
+            $event = json_decode($line, true);
             
-            // Guardar el archivo en tu servidor o en la base de datos
-            // Aquí puedes usar file_get_contents o cURL para descargar el archivo
-        }
+            // Verifica si la decodificación fue exitosa
+            if (json_last_error() === JSON_ERROR_NONE) {
+                // Imprime el evento decodificado para depuración
 
-        // Responder con éxito
-        http_response_code(200);
-        echo json_encode(['status' => 'success']);
-    } else {
-        http_response_code(400);
-        echo json_encode(['status' => 'error', 'message' => 'Datos inválidos']);
+                // Extraer datos del evento
+                $from = $event['data']['from'] ?? null; // Campo 'from' dentro de 'data'
+                $body = $event['data']['body'] ?? ''; // Campo 'body' dentro de 'data'
+                $from = str_replace('@c.us', '', $from); // Elimina el sufijo
+
+                // Verifica los valores extraídos
+                if (is_null($from)) {
+                    echo "El campo 'from' está ausente.\n";
+                }
+                if (empty($body)) {
+                    echo "El campo 'body' está ausente o vacío.\n";
+                }
+
+                // Validar que los datos existen
+                if ($from && !empty($body)) {
+                    // Verificar si el número existe en la tabla contactos
+                    $query = $con->prepare("SELECT COUNT(*) FROM medicos WHERE medico_telefono = :numero");
+                    $query->execute([':numero' => $from]);
+                    $exists = $query->fetchColumn();
+
+                    if ($exists) {
+                        // Prepara la consulta para insertar en la base de datos
+                        $query = $con->prepare("INSERT INTO respuestas (numero, mensaje) VALUES (:froms, :body)");
+                        $params = [
+                            ':froms' => $from,
+                            ':body' => $body
+                        ];
+                        
+                        // Ejecuta la consulta
+                        if ($query->execute($params)) {
+                            file_put_contents($file, ''); // Borra el contenido del archivo
+                        } else {
+                            echo "Error al insertar datos: " . implode(", ", $query->errorInfo()) . "\n";
+                        }
+                    } else {
+                        echo "El número {$from} no existe en la tabla contactos. No se insertará.\n";
+                    }
+                } else {
+                    echo "Datos faltantes en el evento.\n";
+                }
+            } else {
+                echo "Error al decodificar JSON: " . json_last_error_msg() . "\n";
+            }
+        }
     }
 } else {
-    // Si el método no es POST
-    http_response_code(405);
-    echo json_encode(['status' => 'error', 'message' => 'Método no permitido']);
+    echo "El archivo no existe.\n";
 }
 ?>
