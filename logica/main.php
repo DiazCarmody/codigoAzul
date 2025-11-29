@@ -93,8 +93,8 @@ function enviarEmail($emailReceptor, $subject, $message){
     $mail->isSMTP();
     $mail->Host       = 'smtp.gmail.com';
     $mail->SMTPAuth   = true;
-    $mail->Username   = '@gmail.com'; // Tu correo Gmail
-    $mail->Password   = $appPassword; // Tu contraseña de aplicación de Gmail
+    $mail->Username   = '@gmail.com'; // correo Gmail
+    $mail->Password   = $appPassword; // contraseña de aplicación de Gmail
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // Cambiado a SMTPS (SSL)
     $mail->Port       = 465; // Puerto para SSL
 
@@ -111,7 +111,7 @@ function enviarEmail($emailReceptor, $subject, $message){
 //Función para enviar emails
 //Función para Enviar mensajes de WSP.
 function enviarMensaje($telefonoRef, $mensaje) {
-    // Validar el formato del teléfono (ejemplo sencillo, puedes mejorarlo)
+    // Validar el formato del teléfono 
     if (!preg_match('/^\d+$/', $telefonoRef)) {
         error_log("Número de teléfono inválido: " . $telefonoRef);
         return false;
@@ -161,4 +161,5 @@ function enviarMensaje($telefonoRef, $mensaje) {
 }
 
 //Función para Enviar mensajes de WSP.
+
 ?>
